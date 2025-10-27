@@ -36,7 +36,7 @@ public class PostController {
     @PostMapping
     @Operation(summary = "게시글 작성", description = "새로운 게시글을 작성합니다.")
     public ResponseEntity<?> register(@RequestBody PostRequestDTO request,
-                                    @RequestHeader("X-User-Id") String userIdHeader) {
+                                      @RequestHeader("X-User-Id") String userIdHeader) {
         try {
             Long authorId = Long.parseLong(userIdHeader);
             PostResponseDTO response = postService.createPost(request, authorId);

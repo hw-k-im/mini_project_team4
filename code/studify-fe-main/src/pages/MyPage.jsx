@@ -23,7 +23,7 @@ async function resolveUserIdByEmail(email, token) {
   let page = 0;
   const PAGE_SIZE = 100;
   while (page < 50) {
-    const res = await api.get("/api/v1/users", {
+    const res = await api.get("/studify/api/v1/users", {
       params: { page, size: PAGE_SIZE },
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -96,7 +96,7 @@ export default function MyPage() {
           window.dispatchEvent(new Event("auth-changed"));
 
           try {
-            const meRes = await api.get(`/api/v1/users/${foundId}`, {
+            const meRes = await api.get(`/studify/api/v1/users/${foundId}`, {
               headers: { Authorization: `Bearer ${accessToken}` },
             });
             const nick = meRes?.data?.nickname;
@@ -208,7 +208,7 @@ export default function MyPage() {
       if (newPw) payload.password = newPw;
 
       if (Object.keys(payload).length) {
-        await api.put(`/api/v1/users/${uid}`, payload, {
+        await api.put(`/studify/api/v1/users/${uid}`, payload, {
           headers: { Authorization: `Bearer ${accessToken}` },
         });
       }
@@ -263,7 +263,7 @@ export default function MyPage() {
 
       if (uid) {
         try {
-          await api.delete(`/api/v1/users/${uid}`, {
+          await api.delete(`/studify/api/v1/users/${uid}`, {
             headers: { Authorization: `Bearer ${accessToken}` },
           });
         } catch (_) {}

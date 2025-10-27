@@ -22,8 +22,7 @@ async function resolveUserIdByEmail(email, token) {
   let page = 0;
   const PAGE_SIZE = 100;
   while (page < 50) {
-    // const res = await api.get("/studify/api/v1/users", {
-    const res = await api.get("/api/v1/users", {
+    const res = await api.get("/studify/api/v1/users", {
       params: { page, size: PAGE_SIZE },
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -49,7 +48,7 @@ export default function SignIn() {
     setForm((f) => ({ ...f, [name]: value }));
   };
 
-  const login = () => api.post("/api/v1/auth/login", form);
+  const login = () => api.post("/api/auth/login", form);
 
   const onSubmit = async (e) => {
     e.preventDefault();

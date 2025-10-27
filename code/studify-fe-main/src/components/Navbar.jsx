@@ -48,8 +48,10 @@ export default function Navbar() {
 
     try {
       const endpoint = action === 'approve' 
-        ? `/studify/api/v1/applications/${applicationId}/approve`
-        : `/studify/api/v1/applications/${applicationId}/reject`;
+        // ? `/studify/api/v1/applications/${applicationId}/approve`
+        // : `/studify/api/v1/applications/${applicationId}/reject`;
+        ? `/api/v1/applications/${applicationId}/approve`
+        : `/api/v1/applications/${applicationId}/reject`;
       
       await api.patch(endpoint);
       

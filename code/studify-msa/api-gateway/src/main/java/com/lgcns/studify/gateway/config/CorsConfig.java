@@ -14,18 +14,20 @@ public class CorsConfig {
 
     @Bean
     public CorsWebFilter corsWebFilter() {
-        CorsConfiguration corsConfig = new CorsConfiguration();
-        corsConfig.setAllowedOrigins(List.of("http://localhost:3000",
-                                            "https://msa-red.vercel.app"
+        CorsConfiguration cors = new CorsConfiguration();
+        // ★ 정확한 도메인 + 프리뷰까지
+        cors.setAllowedOrigins(List.of(
+            "http://localhost:3000",
+            "https://mini-project-team4.vercel.app"
         ));
-        corsConfig.setMaxAge(3600L);
-        corsConfig.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
-        corsConfig.setAllowedHeaders(List.of("*"));
-        corsConfig.setAllowCredentials(true);
+        cors.addAllowedOriginPattern("https://*.vercel.app"); // 프리뷰 허용
+        cors.setAllowedMethods(Arrays.asList("GET","POST","PUT","DELETE","PATCH","OPTIONS"));
+        cors.setAllowedHeaders(List.of("*"));
+        cors.setAllowCredentials(true);
+        cors.setMaxAge(3600L);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", corsConfig);
-
+        source.registerCorsConfiguration("/**", cors);
         return new CorsWebFilter(source);
     }
 }

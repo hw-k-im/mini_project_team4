@@ -9,7 +9,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("https://msateam4.vercel.app") // 프론트 배포 주소
+                .allowedOrigins("https://mini-project-team4.vercel.app/") // 프론트 배포 주소
                 .allowedMethods("*")
                 .allowedHeaders("*")
                 .allowCredentials(true);

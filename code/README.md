@@ -771,7 +771,7 @@ curl -X POST http://localhost:8080/api/v1/posts \
 
 가장 간단한 테스트 방법은 배포된 Vercel URL에 접속하는 것입니다.
 
-* **Vercel (FE) 접속 URL:** [https://msateam4.vercel.app](https://msateam4.vercel.app)
+* **Vercel (FE) 접속 URL:** [https://mini-project-team4.vercel.app/](https://mini-project-team4.vercel.app/)
 
 위 주소로 접속하여 회원가입, 로그인, 게시글 작성 등 모든 기능을 테스트할 수 있습니다.
 
@@ -779,7 +779,7 @@ curl -X POST http://localhost:8080/api/v1/posts \
 
 이 서비스가 동작하는 방식은 다음과 같습니다.
 
-1.  **사용자 (브라우저)**가 [https://msateam4.vercel.app](https://msateam4.vercel.app) 에 접속합니다.
+1.  **사용자 (브라우저)**가 [https://mini-project-team4.vercel.app/](https://mini-project-team4.vercel.app/) 에 접속합니다.
 2.  **Vercel (React)**이 `REACT_APP_API_BASE_URL` 환경 변수(`http://[EC2 퍼블릭 IP 주소]/api`)를 읽어 백엔드 API를 호출합니다.
 3.  **AWS EC2 (Nginx)**가 `80`번 포트로 `/api` 요청을 받습니다.
 4.  **Nginx**가 이 요청을 서버 내부의 `API-Gateway` 컨테이너(`127.0.0.1:8080`)로 전달(Proxy)합니다.

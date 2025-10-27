@@ -32,7 +32,7 @@ spring:
         - id: user-service
           uri: lb://user-service
           predicates:
-            - Path=/api/v1/users/**,/api/auth/**
+            - Path=/api/v1/users/**, /api/v1/auth/**
           # StripPrefix=0 는 효과가 없으므로 제거
 
         # Post Service (with /studify prefix → 내부 경로로 rewrite)
@@ -41,7 +41,7 @@ spring:
           predicates:
             - Path=/studify/api/v1/post/**
           filters:
-            - RewritePath=/studify/(?<segment>.*),/${segment}
+            - RewritePath=/studify/(?<segment>.*),/$\{segment}
 
         # Post Service (일반 경로)
         - id: post-service

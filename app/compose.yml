@@ -1,0 +1,55 @@
+version: "3.8"
+
+services:
+  eureka-server:
+    build: ../code/studify-msa/eureka-server
+    container_name: eureka-local
+    ports:
+      - "8761:8761"
+    networks:
+      - studify-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8761"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  api-gateway:
+    build: ../code/studify-msa/api-gateway
+    container_name: gateway-local
+    ports:
+      - "8080:8080"
+    depends_on:
+      - eureka-server
+    networks:
+      - studify-net
+    environment:
+      - EUREKA_SERVER=http://eureka-server:8761/eureka/
+
+  user-service:
+    build: ../code/studify-msa/user-service
+    container_name: user-local
+    depends_on:
+      - eureka-server
+    networks:
+      - studify-net
+
+  post-service:
+    build: ../code/studify-msa/post-service
+    container_name: post-local
+    depends_on:
+      - eureka-server
+    networks:
+      - studify-net
+
+  notification-service:
+    build: ../code/studify-msa/notification-service
+    container_name: noti-local
+    depends_on:
+      - eureka-server
+    networks:
+      - studify-net
+
+networks:
+  studify-net:
+    driver: bridge

@@ -18,8 +18,8 @@ public class SecurityConfig {
             .csrf(ServerHttpSecurity.CsrfSpec::disable)
             .cors(Customizer.withDefaults())
             // ★ 기본 인증/폼 로그인 비활성화 (WWW-Authenticate: Basic 제거)
-            .httpBasic(ServerHttpSecurity.HttpBasicSpec::disable)
-            .formLogin(ServerHttpSecurity.FormLoginSpec::disable)
+            .httpBasic().disable()
+            .formLogin().disable()
             .authorizeExchange(ex -> ex
                 // ★ 프리플라이트 전체 허용
                 .pathMatchers(HttpMethod.OPTIONS, "/**").permitAll()
